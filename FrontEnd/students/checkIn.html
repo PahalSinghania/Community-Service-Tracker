@@ -1,0 +1,224 @@
+ <!-- Checkin Page 
+    - add functionality implemented, needs backend connection
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania and Tom Katzman">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap core CSS & fonts -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="LogApp" ng-controller="testController">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li class="active"><a href="checkIn.html">Check In<span class="sr-only">(current)</span></a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul> 
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li class="active"><a href="checkIn.html">Check In<span class="sr-only">(current)</span></a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">Check In</h1>
+        
+          <div class="row placeholders">
+            <h2> Enter New Activity</h2>
+          </div>
+
+          <div class="placeholder">
+            <div>
+              <label> Catagory </label>
+              </br>
+              <select name="catagory" id="catagory">
+                <option disabled selected> What was your Activity? </option>
+                <option id="Community Partner" value="Community Partner">Community Partner</option>
+                <option id="Civic Action" value="Civic Action">Civic Action</option>
+                <option id="Alliance Building" value="Alliance Building">Alliance Building</option>
+              </select>
+            </div>
+          </br>
+
+            <!-- Catagory: Community Partner-->
+            <div id="communityPartner" style="display:none">
+              <form>
+                <div id="activity">
+                  <label> Activity </label>
+                </br>
+                  <input class="checkIn cp" type="text" placeholder="Enter Activity" id="keycategory[]" ng-model="activityname" required>
+                </div>
+              </br>
+                <div id="location">
+                  <label> Location </label>
+                </br>
+                  <input class="checkIn cp" type="text" placeholder="Enter Location" id="keycategory[]" ng-model="location" required>
+                </div>
+              </br>
+                <div id="date">
+                  <label> Date </label>
+                </br>
+                  <input class="cp" type="date"  ng-model="date" id="keycategory[]" required>
+                </div>
+              </br>
+                <div>
+                  <label> Time (format = 01:01 AM/PM)</label>
+                </br>
+                  <input class="cp" type="time" ng-model="time" id="keycategory[]" required>
+                </div>
+              </br>
+                <div>
+                  <label> Hours </label>
+                </br>
+                  <input class="checkIn cp" type="number" min="0" ng-model="hours" id="keycategory[]" required>
+                </div>
+              </br>
+                <div>
+                  <label> Comments </label>
+                </br>
+                  <input class="checkIn cp" type="text" placeholder="Add Comments" id="keycategory[]" ng-model="comments">
+                </div>
+              </br>
+                <button type="submit" id="submit" value="Submit" class="btn btn-success" id="keycategory[]" ng-click="addPartner()">Submit</button>
+              </form>
+            </div>
+
+            <!-- Catagory: Civil Action-->
+            <div id="civicAction" style="display:none">
+              <form>
+                <div id="actionName">
+                  <label> Action Name </label>
+                </br>
+                  <input class="checkIn ca" type="text" placeholder="What was your Action?" ng-model="actionName" required>
+                </div>
+
+                <div id="actionType">
+                  <label> Action Type </label>
+                </br>
+                  <select ng-model="type" class="ca" required>
+                    <option value=""> What kind of Action? </option>
+                    <option value="Voting">Voting</option>
+                    <option value="Campaign Work">Campaign Work</option>
+                    <option value="Town Hall Meeting">Town Hall Meeting</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+
+                <div id="date" class="ca">
+                  <label> Date </label>
+                </br>
+                  <input type="date" ng-model="date" class="ca" required>
+                </div>
+
+                <div id="time">
+                  <label> Time (format = 01:01 AM/PM)</label>
+                </br>
+                  <input type="time" ng-model="time" class="ca" required>
+                </div>
+              </br>
+                <button class="btn btn-success" ng-click="addCivic()" class="ca">Submit</button>
+              </form>
+            </div>
+
+            <!-- Catagory: Alliance Building-->
+            <div id="allianceBuilding" style="display:none">
+              <form>
+                <div id="meetingName">
+                  <label> Topic of Meeting</label>
+                </br>
+                  <input class="checkIn ab" type="text" placeholder="Why did you meet?" ng-model="meetingName" id="keycategory[]" required>
+                </div>
+
+                <div id="date">
+                  <label> Date </label>
+                </br>
+                  <input type="date" class="ab" ng-model="date" required>
+                </div>
+
+                <div id="time">
+                  <label> Time (format = 01:01 AM/PM)</label>
+                </br>
+                  <input type="time" ng-model="time" class="ab" required>
+                </div>
+              </br>
+                <button class="btn btn-success ab" ng-click="addAlliance()">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <footer class="footer">
+      <div class = "container-fluid">
+        © 2017 Northeastern University - Community Service Portal v2 
+        <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Jquery to make the variable selection of activities work -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+    <!-- Javascript for activity selection -->
+    <script src="checkIn.js"></script>
+
+    <!-- Script for Angular js  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+
+
+    <!-- Javascript for adding activity -->
+    <script src="logs.js"></script>
+    
+  </body>
+</html>

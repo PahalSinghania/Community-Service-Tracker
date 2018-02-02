@@ -1,0 +1,56 @@
+ <!-- StudentLogin Page
+    - needs js and security implementation
+    - remember me, forgot password functionality not implemented
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html>
+  <head>         
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <meta name="author" content="pahal singhania">
+    <link rel="icon" href="img/nuIcon.png">
+      
+    <title>Nu Aces</title>
+
+    <link rel="stylesheet" href="css/adminLogin.css">
+    <div class= "header" >        
+      <a href="mailto:nuaces_help@neu.edu" alt class = "help"> 
+        Help
+      </a>            
+    </div>
+  </head>
+
+  <body>
+    <div class = "forms">
+      <form action="students/home.html">
+        <div class="imgcontainer">
+          <img src="img/login.png" alt="Login" class="login">
+        </div>
+      
+        <div class="container">
+          <label><b>Username</b></label>
+          <input type="text" placeholder="Email" name="uname" required>
+      
+          <label><b>Password</b></label>
+          <input type="password" placeholder="Password" name="pswd" required>
+      
+         
+          <button type="submit">Login</button>
+          <input type="checkbox" checked="checked"> Remember me
+        </div>
+      </form>
+      
+        <div class = "footer">
+          <form class = "cancel" action="loginPortal.html">
+            <button type ="submit" class="cancelbtn" >Cancel</button> 
+          </form>
+          <span class ="psw">Forgot <a href="#">password?</a></span>
+        </div>
+      
+    </div>
+  </body>
+<html>
+

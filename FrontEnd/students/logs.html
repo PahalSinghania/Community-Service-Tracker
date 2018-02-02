@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap core CSS & fonts -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-app="LogApp" ng-controller="testController">
+
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+       
+        <!-- Collapsable menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="profile.html">Profile</a></li>
+                <li><a href="checkIn.html">Check In</a></li>
+                <li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="../loginPortal.html">Logout</a></li>
+              </ul>
+         
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="checkIn.html">Check In</a></li>
+            <li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page Header -->
+          <h1 class="page-header">Logs</h1>
+        
+          <!--  Add activity link -->
+          <div class="row well">
+            <a href = "checkIn.html" class="pull-right" ><i class="glyphicon glyphicon-plus"></i> Add New Activity</i>  </a>
+          </div>
+
+          <!-- Partner Table -->
+          <h2 class="sub-header"> Community Partner</h2>
+          <div class="table-responsive">
+            <table st-table="display_partner" st-safe-src="partner" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th st-sort "activity" >Activity</th> 
+                  <th st-sort "date" >Date</th>
+                  <th st-sort "time" >Time</th>
+                  <th st-sort "hours" >Hours</th>
+                  <th st-sort "location" >Location</th>
+                  <th st-sort "comments" >Comments</th>
+                  <th>Action</th>
+                  <tr>
+                    <!-- Search Bar for Activities -->
+                    <th colspan="12">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_partner">
+                    <td>{{row.activityid}}</td>
+                    <td>{{row.activityname}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.time}}</td>
+                    <td>{{row.hours}}</td>
+                    <td>{{row.location}}</td>
+                    <td>{{row.comments}}</td>
+                    <td> <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+                          </i></button>
+                        <button type="button" class="btn btn-danger" ng-click="deletRecord(row.id)" disabled><i class="glyphicon glyphicon-trash">
+                          </i></button>
+                      </div>
+                    </td>
+                </tr>
+                <tfoot>
+                  <tr>
+                    <td colspan="12" class="text-center">
+                     <div st-pagination="" st-items-by-page="5"></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 class="sub-header"> Civic Action</h2>
+          <div class="table-responsive">
+              <table st-table="display_civic" st-safe-src="civic" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th st-sort "action">Action</th> 
+                    <th st-sort "type">Type</th> 
+                    <th st-sort "date">Date</th>
+                    <th st-sort "time">Time</th>
+                    <th>Action</th>
+                    <tr>
+                      <!-- Search Bar for Activities -->
+                      <th colspan="12">
+                        <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                      </th>
+                    </tr>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_civic">
+                    <td>{{row.activityid}}</td>
+                    <td>{{row.action}}</td>
+                    <td>{{row.type}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.time}}</td>
+                    <td> <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+                          </i></button>
+                        <button type="button" class="btn btn-danger" ng-click="deletRecord(row.id)" disabled><i class="glyphicon glyphicon-trash">
+                          </i></button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="12" class="text-center">
+                     <div st-pagination="" st-items-by-page="5"></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+          </div>
+
+          <h2 class="sub-header"> Alliance Building</h2>
+          <div class="table-responsive">
+            <table  st-table="display_alliance" st-safe-src="alliance" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th st-sort "topic">Topic</th> 
+                  <th st-sort "date">Date</th>
+                  <th st-sort "time">Time</th>
+                  <th>Action</th>
+                  <tr>
+                    <!-- Search Bar for Activities -->
+                    <th colspan="12">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_alliance">
+                  <td>{{row.activityid}}</td>
+                  <td>{{row.topic}}</td>
+                  <td>{{row.date}}</td>
+                  <td>{{row.time}}</td>
+                  <td> <div class="btn-group" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+                        </i></button>
+                      <button type="button" class="btn btn-danger" ng-click="deletRecord(row.id)" disabled><i class="glyphicon glyphicon-trash">
+                        </i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="12" class="text-center">
+                   <div st-pagination="" st-items-by-page="5"></div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+            © 2017 Northeastern University - Community Service Portal v2 
+            <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    
+    <!-- Angular JavaScript to make table functional -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+    <script src="logs.js"></script>
+  </body>
+</html>

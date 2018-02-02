@@ -1,0 +1,219 @@
+
+/* Move down content because we have a fixed navbar that is 50px tall 
+  prevent footer bounce*/
+body {
+  padding-top: 50px;
+  height: 100%;
+  overflow: auto;
+}
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+/*
+ * Global add-ons
+ */
+
+.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Navbar
+ */
+ .navbar-left {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .navbar-left { 
+    display: block;
+  }
+}
+
+.social {
+  padding: 10px;
+}
+
+/* Hide default border to remove 1px line. */
+ .navbar-fixed-top {
+  border: 0;
+}
+
+/* Hide collapsable dropdown for computers */
+.navbar-right {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navbar-right { 
+    display: block;
+  }
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+  }
+}
+
+/* Sidebar navigation */
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #790400;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #d14532;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-bottom: 60px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+input[type=search] {
+  width: 100%;
+}
+
+.checkIn, input[type=date], input[type=time], select {
+  width: 50%;
+}@media (max-width: 768px) {
+  .checkIn, input[type=date], input[type=time], select {
+    width: 100%;
+  }
+}
+
+.dropdown-toggle {
+  width : 100%;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+}
+
+/*
+ * Image sizes
+ */ 
+.profile {
+  width: 88%;
+}
+
+/*
+ * Footer
+ */
+
+ .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  color: rgb(151, 151, 151);
+  background-color: #444;
+  width: 100%;
+  padding: 10px 0px 10px 10px; 
+  font-size: 20; 
+  font-size: 1.2vw;
+  z-index: 1001;
+}
+
+.help, .help:hover, .help:focus  {
+  position: fixed;
+  color: rgb(150, 150, 150);
+  right: 0;
+  padding: 10px 20px ;
+  font-size: 1.5vw;
+  
+}
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+

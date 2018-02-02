@@ -1,0 +1,62 @@
+.nucs {
+    max-width: 50%;
+}
+
+.help {
+    position: fixed;
+    right: 0;
+    color: red;
+    padding: 5px 5px;
+    font-size: 20px;
+    font-size: 2.0vw;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    background-color: white;
+    padding: 0px 40px 0px 0px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    left: 0;
+    overflow:hidden;
+}
+
+.container {
+    padding: 50px 10px; 
+    overflow-wrap: break-word;
+    left: 0;
+    right: 0;
+    background-color: rgb(190, 188, 188);
+    width:100%;
+    height: 100%;
+    position: fixed;
+    z-index: -1;
+}
+
+.types {
+    max-height: 100%;
+    max-width: 100%;
+    text-align: center;
+    align-self: center;
+    background-color: white;
+    padding: 200px 5px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    color: #FFF;
+    background-color: #444;
+    width: 100%;
+    padding: 10px 0px 10px 10px; 
+    font-size: 20; 
+    font-size: 1.2vw;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 500px) {
+    .types {
+      padding: 110px 5px;
+    }
+}

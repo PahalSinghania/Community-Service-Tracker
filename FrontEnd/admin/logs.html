@@ -1,0 +1,294 @@
+ <!-- Logs Page 
+    - filter button hidden js not implemented, functionality obtained via search bar. 
+    - auto pagination with each page displaying 10 partners under each table
+    - activity chart hidden, not implemented, placeholder image provided
+    - global search bar hidden and not implemented
+    - log get requests need connection to the back end
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap core CSS & fonts -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-app="LogApp" ng-controller="testController">
+
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+       
+        <!-- Collapsable menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="../loginPortal.html">Logout</a></li>
+              </ul>
+         
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page Header -->
+          <h1 class="page-header">Logs</h1>
+        
+          <!-- Filter Functionality-->
+          <!-- div class="row placeholder">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#demo" style = "display:none">Filter</button>
+            <div id="demo" class="collapse">
+              <form action="students.html">
+                <div class="col-sm-3">
+                  <h4>College</h4>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">CAMD</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">D'Amore-McKim</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >CCIS</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >COE</label>
+                  </div>                    
+                </div> 
+                <div class="col-sm-3">
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >Bouvé College</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >School of Law</label>
+                  </div>
+                  <div class="checkbox">                      
+                    <label><input type="checkbox" value="" >CPS</label>
+                  </div>  
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >COS</label>
+                  </div>  
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >CSSH</label>
+                  </div>                    
+                </div> 
+                <div class="col-sm-3">
+                  <h4>Partner</h4>
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                  <h4>Location</h4>
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                </br>
+                </div>
+                <div class="col-sm-3">
+                  <h4>Category</h4>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >Community Partner</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >Civic Action</label>
+                  </div>
+                  <div class="checkbox">                      
+                    <label><input type="checkbox" value="" >Alliance Building</label>
+                  </div>  
+                </div> 
+              </form>
+            </div> 
+          </div --> 
+            
+          <!-- Search Bar for Activities -->
+          <!-- form class="form ">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form -->
+
+          <!-- Activity Table -->
+          <h2 class="sub-header"> Community Partner</h2 >
+          <div class="table-responsive">
+            <table st-table="display_records" st-safe-src="partner" class="table table-striped">
+              <thead>
+                <tr>
+                  <th st-sort "student">Student</th> 
+                  <th st-sort "activity" >Activity</th> 
+                  <th st-sort "date" >Date</th>
+                  <th st-sort "time" >Time</th>
+                  <th st-sort "hours" >Hours</th>
+                  <th st-sort "location" >Location</th>
+                  <th st-sort "comments" >Comments</th>
+                  <tr>
+                    <!-- Search Bar for Partner Activities -->
+                    <th colspan="12">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
+                  <td>{{row.student}}</td>
+                  <td>{{row.activityname}}</td>
+                  <td>{{row.date}}</td>
+                  <td>{{row.time}}</td>
+                  <td>{{row.hours}}</td>
+                  <td>{{row.location}}</td>
+                  <td>{{row.comments}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="12" class="text-center">
+                    <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <h2 class="sub-header"> Civic Action</h2>
+          <div class="table-responsive">
+              <table st-table="display_civic" st-safe-src="civic" class="table table-striped">
+                <thead>
+                  <tr>
+                    <th st-sort "student">Student</th> 
+                    <th st-sort "action">Action</th> 
+                    <th st-sort "type">Type</th> 
+                    <th st-sort "date">Date</th>
+                    <th st-sort "time">Time</th>
+                    <tr>
+                      <!-- Search Bar for Partner Activities -->
+                      <th colspan="10">
+                        <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                      </th>
+                    </tr>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_civic">
+                    <td>{{row.student}}</td>
+                    <td>{{row.action}}</td>
+                    <td>{{row.type}}</td>
+                    <td>{{row.date}}</td>
+                    <td>{{row.time}}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="10" class="text-center">
+                      <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+          </div>
+
+          <h2 class="sub-header"> Alliance Building</h2>
+          <div class="table-responsive">
+            <table st-table="display_alliance" st-safe-src="alliance"class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Student</th>
+                  <th>Topic</th> 
+                  <th>Date</th>
+                  <th>Time</th>
+                  <tr>
+                    <!-- Search Bar for Partner Activities -->
+                    <th colspan="10">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_alliance">
+                  <td>{{row.student}}</td>
+                  <td>{{row.topic}}</td>
+                  <td>{{row.date}}</td>
+                  <td>{{row.time}}</td>
+                </tr>
+              </tbody>
+              <tfoot>
+                  <tr>
+                    <td colspan="10" class="text-center">
+                      <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+                    </td>
+                  </tr>
+                </tfoot>
+            </table>
+          </div>
+
+          <!-- Placeholder activity graph -->     
+          <!-- div class="row placeholder">
+            <div class="col-xs-9 col-sm-9 placeholder">
+              <h2 class="sub-header"> Activity Chart</h2>
+              <img src= "../img/Participation.png" height="300">    
+            </div> 
+          </div -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+            © 2017 Northeastern University - Community Service Portal v2 
+            <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <!-- Angular JavaScript to make table functional -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+    <script src="logs.js"></script>
+  </body>
+</html>

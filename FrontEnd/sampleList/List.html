@@ -1,0 +1,156 @@
+ <!-- sample list page 
+		- reference code, not relevant to actual website implementation
+  -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+		<script src="app.js"></script>
+		<style>
+			.st-sort-ascent:before{
+			content: '\25B2';
+		  }
+		  .st-sort-descent:before{
+			content: '\25BC';
+		  }
+		  body {
+			font-family: open-sans;
+			font-size: 14px;
+		}
+		</style>
+	</head>
+
+	<body ng-app="TestApp" ng-controller="testController">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#">Northeastern University</a> 
+					<a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				 
+				<div id="navbar" class="navbar-collapse collapse">
+				  <ul class="nav navbar-nav navbar-right">
+					  <li><a href="home.html">Home</a></li>
+					  <li><a href="profile.html">Profile</a></li>
+						<li><a href="checkIn.html">Check In</a></li>
+						<li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+						<li><a href="settings.html">Settings</a></li>
+					  <li><a href="../loginPortal.html">Logout</a></li>
+					</ul>
+			  </div>
+			</div>
+	  </nav>
+
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-2  sidebar">
+					<ul class="nav nav-sidebar">
+					  <li><a href="home.html">Home</a></li>
+						<li><a href="profile.html">Profile</a></li>
+					  <li><a href="checkIn.html">Check In</a></li>
+					  <li class="active"><a href="logs.html">Logs <span class="sr-only">(current)</span></a></li>
+					  <li><a href="settings.html">Settings</a></li>
+						<li><a href="../loginPortal.html">Logout</a></li>
+					</ul>
+			  </div>
+						  
+				<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<h1 class="page-header">Logs</h1>
+			
+					<div class="row well">
+						<a href = "checkIn.html" class="pull-right" ><i class="glyphicon glyphicon-plus"></i> Add New Activity</i>  </a>
+					</div>
+
+					<h2 class="sub-header"> Community Partner</h2>
+
+					<div class="table-responsive">
+						<table st-table="display_records"  st-safe-src="employees" class="table table-striped">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th st-sort="activity">Activity</th> 
+									<th st-sort="date">Date</th>
+									<th st-sort="time">Time</th>
+									<th st-sort="hours">Hours</th>
+									<th st-sort="location">Location</th>
+									<th>Comments</th>
+									<th>Action</th>
+								</tr>
+								<tr>
+									<th colspan="5">
+										<input st-search placeholder="global search" class="input-sm form-control" type="search"/>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
+									<!td>{{row.activityid}}</td>
+									<!td>{{row.activityname}}</td>
+									<!td>{{row.date}}</td>
+									<!td>{{row.time}}</td>
+									<!td>{{row.hours}}</td>
+									<!td>{{row.location}}</td>
+									<!td>{{row.comments}}</td>
+									<td>{{row.employee_name}}</td>
+									<td>{{row.employee_salary}}</td>
+									<td>{{row.employee_age}}</td>
+									<t>
+						<div class="btn-group" role="group" aria-label="...">
+						  <button type="button" class="btn btn-info" ng-click="viewRecord(row.id)"><i class="glyphicon glyphicon-search">
+								</i></button>
+						  <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+								</i></button>
+						  <button type="button" class="btn btn-danger" ng-click="deletRecord(row.id)"><i class="glyphicon glyphicon-trash">
+								</i></button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+		
+					<td colspan="10" class="text-center">
+
+  					
+						<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="10"></div>
+						
+					</td>
+					
+				</tr>
+			</tfoot>
+		</table>
+		</div>
+
+		<footer class="footer">
+      <div class = "container-fluid">
+            © 2017 Northeastern University - Community Service Portal v2 
+            <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Angular JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+    <script src="app.js"></script>
+
+	</body>
+</html>

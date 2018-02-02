@@ -1,0 +1,179 @@
+ <!-- Partner Page 
+    - delete partner buttons disabled
+    - edit modal needs implementation
+    - edit partner, delete partner needs js implementation
+    - filter functionality implemented via search bar. 
+    - auto pagination with each page displaying 20 partners
+    - add partner functionality implemented, needs backend connection
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+   <!-- Bootstrap core CSS & fonts -->
+   <link href="../css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+
+  </head>
+
+  <body  ng-app="PartnerApp" ng-controller="testController">
+
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collapsable navigation menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="students.html">Students</a></li>
+                <li class="active"><a href="partners.html">Partners<span class="sr-only">(current)</span></a></li>
+                <li><a href="logs.html">Logs</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="../loginPortal.html">Logout</a></li>
+              </ul>
+         
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="students.html">Students</a></li>
+            <li class="active"><a href="partners.html">Partners<span class="sr-only">(current)</span></a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page Header -->
+          <h1 class="page-header">Partners</h1>
+
+          <!-- Collapsible add button -->
+          <div>
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#demo">Add Partner</button>
+              <div id="demo" class="collapse">
+                <form >
+                  <div class = "col-sm-3">
+                    <label> Partner</label>
+                  </br>
+                    <input placeholder = "enter name" class="cp" type="text" ng-model="partnerName" id="keycategory[]" required>
+                  </div>
+                  <div class = "col-sm-3">
+                    <label> Contact </label>
+                  </br>
+                    <input placeholder = "enter contact"class="cp" type="text" ng-model="contact" id="keycategory[]" required>
+                  </div>
+                  <div class = "col-sm-3">
+                    <label> Phone </label>
+                  </br>
+                    <input placeholder = "enter phone"class="cp" type="number" ng-model="phone" id="keycategory[]" required>
+                  </div>
+                  <div class = "col-sm-3"> 
+                    <label> Email </label>
+                  </br>
+                    <input placeholder = "enter email"class="cp" type="email" ng-model="email" id="keycategory[]" required>
+                    <button type="submit" id="submit" value="Submit"  ng-click="addPartner()"><i class="glyphicon glyphicon-plus"></i>
+                  </div>
+                </form>
+              </div>
+          </div>
+        </br>
+
+          <!-- Partner Table -->
+          <div class="table-responsive">
+            <table st-table="display_records" st-safe-src="partner" class="table table-striped">
+              <thead>
+                <tr>
+                  <th st-sort "partner">Partner</th>
+                  <th st-sort "contact">Contact</th>
+                  <th st-sort "phone">Phone</th>
+                  <th st-sort "email">Email</th>
+                  <th>Action</th>
+                </tr>
+                <tr>
+                    <!-- Search Bar for Partners-->
+                    <th colspan="10">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_records">
+                  <td>{{row.partner}}</td>
+                  <td>{{row.contact}}</td>
+                  <td>{{row.phone}}</td>
+                  <td>{{row.email}}</td>
+                  <td> 
+                    <div class="btn-group" role="group" aria-label="...">
+                      <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+                        </i></button>
+                      <button type="button" class="btn btn-danger" ng-click="deletRecord(row.id)" disabled><i class="glyphicon glyphicon-remove">
+                        </i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="10" class="text-center">
+                    <div st-pagination="" st-items-by-page="20" st-displayed-pages="10"></div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+            © 2017 Northeastern University - Community Service Portal v2 
+            <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    
+    <!-- Angular JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+    <script src="partners.js"></script>
+
+  </body>
+</html>

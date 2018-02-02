@@ -1,0 +1,151 @@
+ <!-- Home page 
+    - pie chart with dummy data present
+    - pie chart script implemntation at the bottom of file
+    - need get activities js implementation
+    - need to incorporate pie chart with data recieved from get request
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap  -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+       
+        <!-- Collapsable navigation menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="checkIn.html">Check In</a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>       
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="home.html">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="profile.html">Profile</a></li>
+            <li><a href="checkIn.html">Check In</a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page Header -->
+          <h1 class="page-header">Home</h1>
+
+          <div class="row placeholders">
+            <!-- Progress pie chart -->
+            <div class="col-xs-12 col-sm-6 placeholder">
+              <div id="piechart"></div>
+              <h4>Progress</h4>
+            </div>
+
+            <div class= "col-xs-12 col-sm-6 placeholder">
+              <!-- Profile link & image -->
+              <div class="col-xs-6 col-sm-6 placeholder">
+                <a href="profile.html" ><img src="../img/Profile.png" width="300" height="300" class="img-responsive profile" ></a>
+                <h4>Profile</h4>
+              </div>
+              <!-- Check In link & image -->
+              <div class="col-xs-6 col-sm-6 placeholder">
+                <a href="checkIn.html" ><img src="../img/CheckIn.png" width="300" height="300" class="img-responsive" ></a>
+                <h4>Check In</h4>
+              </div>
+              <!-- Logs link & image -->
+              <div class="col-xs-6 col-sm-6 placeholder">
+                <a href="logs.html" ><img src="../img/Log.png" width="300" height="300" class="img-responsive " ></a>
+                <h4>Logs</h4>
+              </div>
+              <!-- Settings link & image -->
+              <div class="col-xs-6 col-sm-6 placeholder">
+                <a href="settings.html" ><img src="../img/Settings.png" width="300" height="300" class="img-responsive " ></a>
+                <h4>Settings</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+        © 2017 Northeastern University - Community Service Portal v2 
+        <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <!-- Loads google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+    <!-- Pie chart for this page -->
+    <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Activity', 'Frequency'],
+          ['Community Partner', 8],
+          ['Service Learning', 2],
+          ['Alliance Building',1]
+          ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Total Service', 'width':500, 'height':400};
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+
+  </body>
+</html>

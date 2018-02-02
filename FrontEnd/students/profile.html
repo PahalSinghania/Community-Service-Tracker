@@ -1,0 +1,209 @@
+ <!-- Profile Page 
+    - Profile info display needs verification
+    - edit modal needs auto fill implementation
+    - edit modal implemented, needs backend connection, js needs verification
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania and Tom Katzman">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="ProfileApp" ng-controller="testController">
+
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+
+        <!-- Collapsable menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="profile.html">Profile <span class="sr-only">(current)</span></a></li>
+            <li><a href="checkIn.html">Check In</a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul> 
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="profile.html">Profile <span class="sr-only">(current)</span></a></li>
+            <li><a href="checkIn.html">Check In</a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page Header -->
+          <h1 class="page-header">Profile</h1>
+          <div class="content">
+            <!-- Avatar Image -->
+            <div class="col-sm-4">
+              <h4>Avatar</h4>
+              <img src="../img/Profile.png" width="300" height="300" class="img-responsive" >
+            </div>
+
+            <!-- Profile Info -->
+            <div class = "col-sm-5" st-table="display_records" st-safe-src="partner" ng-bind=""> 
+              <div st-select-row="student" st-select-mode="multiple" ng-repeat="student in display_records">
+                <div >
+                  <h4>First Name</h4>
+                  {{student.firstname}}
+                </div>
+                <div>
+                  <h4>Last Name</h4>
+                  {{student.lastname}}
+                </div>
+                <div>
+                  <h4>Email</h4>
+                  {{student.email}}}
+                </div>
+                <div>
+                  <h4>Username</h4>
+                  {{student.username}}
+                </div>
+                <div>
+                  <h4>Community Partner</h4>
+                  {{student.partner}}
+                </div>
+                <div>
+                  <h4>Community Partner Location</h4>
+                  {{student.location}}
+                </div>
+                <!-- Trigger/Open The Modal -->
+                <button id="myBtn">Edit Profile</button>
+              </div>
+            </div>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Edit Profile Here</h2>
+
+                <!-- Image upload -->
+                <form>
+                        <label> Submit new profile pic </label> 
+                        <input id="pic" ng-model="pic" type="file" class="file" accept="image/*" required>
+                        <button type = "submit" ng-click="" class="btn btn-primary">Save</button>
+                </form>
+
+                </br>
+
+                <p> --------- or  --------- </p>
+                <label> Update Information
+                <!--Text form -->
+                <form>
+                  <div>
+                    First Name<input type="text" name = "firstName" placeholder="Tom">
+                  </div>
+                </br>
+                  <div>
+                    Last Name<input type="text"name = "lastName" placeholder="Katzman">
+                  </div>
+                </br>
+                  <div>
+                    Email<input type="email" name = "email" placeholder="lorum@ipsum.com">
+                  </div>
+                </br>
+                  <div>
+                    Username<input type="text" name = "uname" placeholder="test">
+                  </div>
+                </br>
+                  <div>
+                    Partner<input type="text" name = "partner" placeholder="Nintendo">
+                  </div>
+                </br>
+                  <div>
+                    Partner Location<input type="text" name = "location" placeholder="My House">
+                  </div></br>
+                  <button type = "submit" class="btn btn-primary">Save</button>
+                  <button  class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </br>
+
+    <!-- Footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+        © 2017 Northeastern University - Community Service Portal v2 
+        <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+
+    <script>
+      // Get the modal
+      var modal = document.getElementById('myModal');
+      
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks the button, open the modal 
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,280 @@
+ <!-- Students Page 
+    - view student, edit student, delete student needs implementation in js 
+    - filter button hidden js not implemented, funtionality obtained via search bar. 
+    - auto pagination with each page displaying 20 students
+    - global search bar not implemented 
+    - edit, view students modal needs implementation
+    - add students functionality implemented, needs backend connection
+    - delete student buttons disabled 
+    - help button with dummy email link included might neeed an update
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Pahal Singhania">
+    <link rel="icon" href="../img/nuIcon.png">
+
+    <title>Nu Aces</title>
+
+    <!-- Bootstrap core CSS & fonts -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+
+    <!-- Custom stylesheet for this page -->
+    <link href="../css/console.css" rel="stylesheet">
+
+  </head>
+
+  <body ng-app="StudentApp" ng-controller="testController">
+
+    <!-- Navbar on top with hidden  collapsable menu-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Northeastern University</a> 
+          <a class="navbar-brand navbar-left " href="#">| Center of Community Service</a> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+        </div>
+
+        <!-- Collapsable menu -->
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="home.html">Home</a></li>
+                <li class="active"><a href="students.html">Students <span class="sr-only">(current)</span></a></li>
+                <li><a href="partners.html">Partners</a></li>
+                <li><a href="logs.html">Logs</a></li>
+                <li><a href="settings.html">Settings</a></li>
+                <li><a href="../loginPortal.html">Logout</a></li>
+              </ul>
+         
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+
+        <!-- SideBar for desktop navigation -->
+        <div class="col-sm-3 col-md-2  sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="students.html">Students <span class="sr-only">(current)</span></a></li>
+            <li><a href="partners.html">Partners</a></li>
+            <li><a href="logs.html">Logs</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="../loginPortal.html">Logout</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <!-- Page header-->
+          <h1 class="page-header">Students</h1>
+
+          <!-- Collapsible Filter button -->
+          <!-- div class="row placeholder">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#demo" style="display:none">Filter</button>
+            <div id="demo" class="collapse" style="display:none">
+              <form action="students.html">
+                <div class="col-sm-3">
+                  <h4>College</h4>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">CAMD</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="">D'Amore-McKim</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >CCIS</label>
+                  </div>
+                  <div class="checkbox">
+                    <label><input type="checkbox" value="" >COE</label>
+                  </div>                    
+                  
+                </div> 
+                <div class="col-sm-3">
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="" >Bouvé College</label>
+                      </div>
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="" >School of Law</label>
+                      </div>
+                      <div class="checkbox">                      
+                        <label><input type="checkbox" value="" >CPS</label>
+                      </div>  
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="" >COS</label>
+                      </div>  
+                      <div class="checkbox">
+                        <label><input type="checkbox" value="" >CSSH</label>
+                      </div>  
+                </div> 
+                <div class="col-sm-3">
+                  <h4>Husky ID</h4>
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                  <h4>Husky Email</h4>
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                </br>
+                </div>
+                <div class="col-sm-3">
+                  <h4>Peer Leader</h4>
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                  <h4>Community Partner</h4>  
+                  <form class="form ">              
+                    <input type="text" class="form-control" placeholder="Search...">                    
+                  </form>
+                </div> 
+              </form>
+            </div> 
+          </div -->
+
+          <!-- Collapsible add button -->
+          <div>
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="collapse" data-target="#demo">Add Student</button>
+            <div id="demo" class="collapse">
+              <form>
+                  <div class = "col-sm-3">
+                <div>
+                  <label> First Name </label>
+                </br>
+                <input class="cp" type="text" ng-model="firstname" id="keycategory[]" required>
+                </div>
+                <div>
+                  <label> Last Name </label>
+                </br>
+                <input class="cp" type="text" ng-model="lastname" id="keycategory[]" required>
+                </div>
+                </div>
+                <div class = "col-sm-3">
+                <div>
+                  <label> Husky Id </label>
+                </br>
+                <input class="cp" type="number" ng-model="id" id="keycategory[]" required>
+                </div>
+                <div>
+                  <label> Husky Email </label>
+                </br>
+                <input class="cp" type="email" ng-model="email" id="keycategory[]" required>
+                </div>
+                </div>
+                <div class = "col-sm-3">
+                <div>
+                  <label> College</label>
+                </br>
+                <input class="cp" type="text" ng-model="college" id="keycategory[]" required>
+                </div>
+                <div>
+                  <label> Peer Leader </label>
+                </br>
+                <input class="cp" type="text" ng-model="leader" id="keycategory[]" required>
+                </div>
+              </br>
+                </div>
+                <div class = "col-sm-3">
+                <div>
+                  <label> Community Partner </label>
+                </br>
+                <input class="cp" type="text" ng-model="parnter" id="keycategory[]" required>
+                </div>
+                <button type="submit" id="submit" value="Submit"  ng-click="addStudent()"><i class="glyphicon glyphicon-plus"></i>
+                </div>
+              </form>
+            </div>
+          </div>
+        </br>
+
+          <!-- Search Bar for Students -->
+          <!-- form class="form ">              
+            <input type="text" class="form-control" placeholder="Search for student...">
+          </form -->
+          
+
+          <!-- Student Table -->
+          <div class="table-responsive">
+            <table  st-table="display_student" st-safe-src="student" class="table table-striped">
+              <thead>
+                <tr>
+                  <th st-sort "firstname">First Name</th>
+                  <th st-sort "lastname">Last Name</th>
+                  <th st-sort "huskyid">Husky Id</th>
+                  <th st-sort "email">Husky Email</th>
+                  <th st-sort "college">College</th>
+                  <th st-sort "peerleader">Peer Leader</th>
+                  <th st-sort "partner">Community Partner</th>
+                  <th>Action</th>
+                  <tr>
+                    <!-- Search Bar for Partner Activities -->
+                    <th colspan="12">
+                      <input st-search type="search" class=" input-sm form-control" placeholder="Search...">
+                    </th>
+                  </tr>
+                </tr>
+              </thead>
+              <tbody>
+                <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in display_student">
+                  <td>{{row.firstname}}</td>
+                  <td>{{row.lastname}}</td>
+                  <td>{{row.huskyid}}</td>
+                  <td>{{row.email}}</td>
+                  <td>{{row.college}}</td>
+                  <td>{{row.peerleader}}</td>
+                  <td>{{row.partner}}</td>
+                  <td> <div class="btn-group" role="group" aria-label="...">
+                      <button type="button" class="btn btn-info" on-click=><i class="glyphicon glyphicon-search">
+                        </i></button>
+                      <button type="button" class="btn btn-default" ng-click="editRecord(row.id)"><i class="glyphicon glyphicon-pencil">
+                        </i></button>
+                      <button type="button" class="btn btn-danger" ng-click="removeItem(row)" disabled ><i class="glyphicon glyphicon-remove">
+                        </i></button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="12" class="text-center">
+                    <div st-items-by-page="20" st-pagination=""  st-displayed-pages="10"></div>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer with help option -->
+    <footer class="footer">
+      <div class = "container-fluid">
+            © 2017 Northeastern University - Community Service Portal v2 
+            <a href="mailto:nuaces_help@neu.edu" alt class = "help">  Help </a>
+      </div> 
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/jquery.min.js"><\/script>')</script>
+    <script src="../js/bootstrap.min.js"></script>
+    
+    <!-- Angular JavaScript to make table functional -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.1/ui-bootstrap-tpls.js"></script>
+    <script src="students.js"></script>
+  </body>
+</html>
